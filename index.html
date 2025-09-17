@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Household Appliances</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .appliance {
+      position: relative;
+      background: #fff;
+      padding: 20px;
+      margin: 0 auto 30px auto;
+      max-width: 800px;
+      border-radius: 12px; /* Rounded corners */
+      border-left: 8px solid #4CAF50;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Softer, cleaner shadow */
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+      overflow: hidden; /* allow banner to overflow */
+    }
+
+    /* Hover effect for a lift */
+    .appliance:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .appliance img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* subtle image shadow */
+    }
+
+    .details {
+      flex: 1;
+    }
+
+    .details h2 {
+      margin: 0 0 10px 0;
+      font-size: 24px;
+      color: #222;
+    }
+
+    .details p {
+      margin: 6px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #4CAF50;
+      font-size: 18px;
+    }
+
+    .sold-banner {
+      position: absolute;
+      top: 40px;
+      left: -50px;
+      transform: rotate(-45deg);
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      padding: 10px 80px;
+      font-size: 18px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    /* Modal Overlay */
+    #carousel-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    #carousel-modal.active {
+      display: flex;
+    }
+
+    .carousel-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .carousel-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      display: block;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 50%;
+    }
+
+    .prev {
+      left: -60px;
+    }
+
+    .next {
+      right: -60px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .carousel-nav {
+        font-size: 30px;
+      }
+      .prev { left: -40px; }
+      .next { right: -40px; }
+    }
+    @media (max-width: 768px) {
+      .appliance {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .appliance img {
+        width: 100%;
+        height: auto;
+        max-height: 250px;
+      }
+
+      .details {
+        padding-top: 15px;
+      }
+
+      .sold-banner {
+        font-size: 14px;
+        padding: 6px 60px;
+        left: -45px;
+        top: 25px;
+      }
+
+      .carousel-content img {
+        max-height: 60vh;
+      }
+
+      .carousel-nav {
+        font-size: 28px;
+        padding: 6px;
+      }
+
+      .prev {
+        left: -30px;
+      }
+
+      .next {
+        right: -30px;
+      }
+
+      .close-btn {
+        top: -40px;
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Household Appliances</h1>
+  <div id="appliance-list"></div>
+
+  <!-- Carousel Modal -->
+  <div id="carousel-modal">
+    <div class="carousel-content">
+      <span class="close-btn" onclick="closeCarousel()">✖</span>
+      <span class="carousel-nav prev" onclick="prevImage()">❮</span>
+      <img id="carousel-image" src="" alt="Appliance Image" />
+      <span class="carousel-nav next" onclick="nextImage()">❯</span>
+    </div>
+  </div>
+
+  <script>
+    const appliances = [
+      {
+        name: "Refrigerator",
+        description: "Energy-efficient fridge with freezer compartment.",
+        price: "$799.00",
+        sold: false,
+        image: [
+          "https://picsum.photos/800/600?random=101",
+          "https://picsum.photos/800/600?random=102",
+          "https://picsum.photos/800/600?random=103"
+        ]
+      },
+      {
+        name: "Microwave Oven",
+        description: "Compact microwave with defrost and quick heat.",
+        price: "$129.00",
+        sold: true,
+        image: [
+          "https://picsum.photos/800/600?random=104",
+          "https://picsum.photos/800/600?random=105"
+        ]
+      },
+      {
+        name: "Washing Machine",
+        description: "Front-load washer with energy-saving modes.",
+        price: "$499.00",
+        sold: false,
+        image: [
+          "https://picsum.photos/800/600?random=106"
+        ]
+      },
+      {
+        name: "Vacuum Cleaner",
+        description: "Lightweight vacuum with HEPA filter.",
+        price: "$149.00",
+        sold: true,
+        image: [
+          "https://picsum.photos/800/600?random=107",
+          "https://picsum.photos/800/600?random=108"
+        ]
+      },
+      {
+        name: "Electric Kettle",
+        description: "1.7L kettle with auto shut-off and fast boil.",
+        price: "$39.99",
+        sold: false,
+        image: [
+          "https://picsum.photos/800/600?random=109"
+        ]
+      }
+    ];
+
+    const container = document.getElementById("appliance-list");
+    const modal = document.getElementById("carousel-modal");
+    const modalImg = document.getElementById("carousel-image");
+
+    let currentImageIndex = 0;
+    let currentImages = [];
+
+    function openCarousel(applianceIndex) {
+      const appliance = appliances[applianceIndex];
+      currentImages = appliance.image;
+      currentImageIndex = 0;
+      updateCarouselImage();
+      modal.classList.add("active");
+    }
+
+    function closeCarousel() {
+      modal.classList.remove("active");
+    }
+
+    function updateCarouselImage() {
+      modalImg.src = currentImages[currentImageIndex];
+    }
+
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+      updateCarouselImage();
+    }
+
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+      updateCarouselImage();
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (!modal.classList.contains("active")) return;
+      if (e.key === "Escape") closeCarousel();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) closeCarousel();
+    });
+
+    appliances.forEach((item, idx) => {
+      const applianceDiv = document.createElement("div");
+      applianceDiv.className = "appliance";
+
+      // Create sold banner if the item is sold
+      if (item.sold) {
+        const banner = document.createElement("div");
+        banner.className = "sold-banner";
+        banner.textContent = "VENDIDO!";
+        applianceDiv.appendChild(banner);
+      }
+
+      // Create image element
+      const img = document.createElement("img");
+      img.src = item.image[0];
+      img.alt = item.name;
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => openCarousel(idx));
+      applianceDiv.appendChild(img);
+
+      // Create details container
+      const detailsDiv = document.createElement("div");
+      detailsDiv.className = "details";
+      detailsDiv.innerHTML = `
+        <h2>${item.name}</h2>
+        <p>${item.description}</p>
+        <p class="price">${item.price}</p>
+      `;
+      applianceDiv.appendChild(detailsDiv);
+
+      container.appendChild(applianceDiv);
+    });
+  </script>
+</body>
+</html>
