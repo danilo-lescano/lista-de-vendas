@@ -220,56 +220,340 @@
 
   <script>
     const appliances = [
-      {
-        name: "Refrigerator",
-        description: "Energy-efficient fridge with freezer compartment.",
-        price: "$799.00",
-        sold: false,
-        image: [
-          "https://picsum.photos/800/600?random=101",
-          "https://picsum.photos/800/600?random=102",
-          "https://picsum.photos/800/600?random=103"
-        ]
-      },
-      {
-        name: "Microwave Oven",
-        description: "Compact microwave with defrost and quick heat.",
-        price: "$129.00",
-        sold: true,
-        image: [
-          "https://picsum.photos/800/600?random=104",
-          "https://picsum.photos/800/600?random=105"
-        ]
-      },
-      {
-        name: "Washing Machine",
-        description: "Front-load washer with energy-saving modes.",
-        price: "$499.00",
-        sold: false,
-        image: [
-          "https://picsum.photos/800/600?random=106"
-        ]
-      },
-      {
-        name: "Vacuum Cleaner",
-        description: "Lightweight vacuum with HEPA filter.",
-        price: "$149.00",
-        sold: true,
-        image: [
-          "https://picsum.photos/800/600?random=107",
-          "https://picsum.photos/800/600?random=108"
-        ]
-      },
-      {
-        name: "Electric Kettle",
-        description: "1.7L kettle with auto shut-off and fast boil.",
-        price: "$39.99",
-        sold: false,
-        image: [
-          "https://picsum.photos/800/600?random=109"
-        ]
-      }
-    ];
+    {
+      name: "Canecas 3 unidades",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/1.jpeg",
+      ]
+    },
+    {
+      name: "Suporte para coador pequeno",
+      description: "-",
+      price: "R$ 5,00",
+      sold: false,
+      image: [
+        "/imgs/2.jpeg",
+      ]
+    },
+    {
+      name: "Conjunto 8 pratos jantar porcelana",
+      description: "-",
+      price: "R$ 40,00",
+      sold: false,
+      image: [
+        "/imgs/3.jpeg",
+      ]
+    },
+    {
+      name: "Conjunto 6 xícaras, pires e bule porcelana",
+      description: "-",
+      price: "R$ 40,00",
+      sold: false,
+      image: [
+        "/imgs/4.jpeg",
+      ]
+    },
+    {
+      name: "Conjunto de travessas e mantegueira porcelana",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/5.jpeg",
+      ]
+    },
+    {
+      name: "Conjunto de travessas porcelana",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/6.jpeg",
+      ]
+    },
+    {
+      name: "Caneca grande",
+      description: "-",
+      price: "R$ 5,00",
+      sold: true,
+      image: [
+        "/imgs/7.jpeg",
+      ]
+    },
+    {
+      name: "Ferramentas de cozinha",
+      description: "Martelo de carne, saca rolhas e colher de café",
+      price: "R$ 5,00",
+      sold: false,
+      image: [
+        "/imgs/8.jpeg",
+      ]
+    },
+    {
+      name: "Pilão de metal",
+      description: "-",
+      price: "R$ 5,00",
+      sold: false,
+      image: [
+        "/imgs/9.jpeg",
+      ]
+    },
+    {
+      name: "Caixa madeira média",
+      description: "-",
+      price: "R$ 5,00",
+      sold: false,
+      image: [
+        "/imgs/10.jpeg",
+      ]
+    },
+    {
+      name: "Bule e leiteira inox",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/11.jpeg",
+      ]
+    },
+    {
+      name: "Fruteira madeira média",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/12.jpeg",
+      ]
+    },
+    {
+      name: "Bandeja plástica média",
+      description: "-",
+      price: "R$ 5,00",
+      sold: false,
+      image: [
+        "/imgs/13.jpeg",
+      ]
+    },
+    {
+      name: "Bandeja plástica grande",
+      description: "-",
+      price: "R$ 5,00",
+      sold: false,
+      image: [
+        "/imgs/14.jpeg",
+      ]
+    },
+    {
+      name: "Petisqueira inox grande",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/15.jpeg",
+      ]
+    },
+    {
+      name: "Balde de gelo inox médio",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/16.jpeg",
+      ]
+    },
+    {
+      name: "Porta-bolo médio",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/17.jpeg",
+      ]
+    },
+    {
+      name: "Conjunto ralador",
+      description: "-",
+      price: "R$ 5,00",
+      sold: false,
+      image: [
+        "/imgs/18.jpeg",
+      ]
+    },
+    {
+      name: "Xícara café pequena",
+      description: "-",
+      price: "R$ 3,00",
+      sold: false,
+      image: [
+        "/imgs/19.jpeg",
+      ]
+    },
+    {
+      name: "Três xícaras café médias",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/20.jpeg",
+      ]
+    },
+    {
+      name: "Garfo, chaia e cutelo",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/21.jpeg",
+      ]
+    },
+    {
+      name: "Travessa vidro grande",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/22.jpeg",
+      ]
+    },
+    {
+      name: "Travessa oval inox grande",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/23.jpeg",
+      ]
+    },
+    {
+      name: "Travessa inox média",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/24.jpeg",
+      ]
+    },
+    {
+      name: "Tigela inox média",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/25.jpeg",
+      ]
+    },
+    {
+      name: "Bandeja inox grande",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/26.jpeg",
+      ]
+    },
+    {
+      name: "Jogo 3 xícaras médias",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/27.jpeg",
+      ]
+    },
+    {
+      name: "Forma bolo/pudim anti aderente",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/28.jpeg",
+      ]
+    },
+    {
+      name: "Bandeja acrílico grande",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/29.jpeg",
+      ]
+    },
+    {
+      name: "Prato para bolo inox",
+      description: "-",
+      price: "R$ 15,00",
+      sold: false,
+      image: [
+        "/imgs/30.jpeg",
+      ]
+    },
+    {
+      name: "Porta guardanapo inox",
+      description: "-",
+      price: "R$ 5,00",
+      sold: false,
+      image: [
+        "/imgs/31.jpeg",
+      ]
+    },
+    {
+      name: "Jogo de taças pequenas",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/32.jpeg",
+      ]
+    },
+    {
+      name: "Conjunto cristal",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/33.jpeg",
+      ]
+    },
+    {
+      name: "2 taças champagne",
+      description: "-",
+      price: "R$ 20,00",
+      sold: false,
+      image: [
+        "/imgs/34.jpeg",
+      ]
+    },
+    {
+      name: "Conjunto licor",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/35.jpeg",
+      ]
+    },
+    {
+      name: "5 copos whisky",
+      description: "-",
+      price: "R$ 30,00",
+      sold: false,
+      image: [
+        "/imgs/36.jpeg",
+      ]
+    },
+    {
+      name: "Centrífuga para lavar verduras",
+      description: "-",
+      price: "R$ 10,00",
+      sold: false,
+      image: [
+        "/imgs/37.jpeg",
+      ]
+    },
+  ];
 
     const container = document.getElementById("appliance-list");
     const modal = document.getElementById("carousel-modal");
